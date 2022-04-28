@@ -1,0 +1,98 @@
+h1 {
+  margin: 0px 0px 15px;
+}
+
+ul {
+  margin: 0px;
+}
+
+li p {
+  margin-right: 10px;
+}
+li select {
+  height: 40px;
+  margin: auto 0;
+}
+
+.input-area {
+  width: 80%;
+  margin: auto;
+  padding: 20px;
+  background-color: #6fe6a9;
+}
+.input-area .create-area {
+  display: flex;
+}
+.input-area .create-area input {
+  height: 30px;
+  margin: auto 10px;
+}
+.input-area .create-area button {
+  height: 30px;
+  margin: auto 0px;
+}
+
+.yet-area {
+  width: 80%;
+  margin: auto;
+  padding: 20px;
+  background-color: #72dafa;
+}
+.yet-area ul li {
+  display: flex;
+  background-color: #28c7f7;
+  margin: 10px;
+  border: 1px solid #079ecc;
+  width: fit-content;
+  padding: 0px 10px;
+}
+
+.doing-area {
+  width: 80%;
+  margin: auto;
+  padding: 20px;
+  background-color: #eeec8a;
+}
+.doing-area ul li {
+  display: flex;
+  background-color: #e4e147;
+  margin: 10px;
+  border: 1px solid #c3bf1c;
+  width: fit-content;
+  padding: 0px 10px;
+}
+
+.done-area {
+  width: 80%;
+  margin: auto;
+  padding: 20px;
+  background-color: #e9af79;
+}
+.done-area ul li {
+  display: flex;
+  background-color: #de8837;
+  margin: 10px;
+  border: 1px solid #ad621c;
+  width: fit-content;
+  padding: 0px 10px;
+}
+
+.input-title {
+  font-size: 20px;
+}
+
+.area-title {
+  font-size: 25px;
+  font-weight: bold;
+  margin-top: 0px;
+}
+
+.change-btn {
+  height: 30px;
+  margin: auto 0px auto 10px;
+}
+
+.delete-btn {
+  height: 30px;
+  margin: auto 0px auto 10px;
+}
