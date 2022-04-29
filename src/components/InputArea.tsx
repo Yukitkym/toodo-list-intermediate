@@ -14,6 +14,7 @@ const InputArea = () => {
         id: new Date(),
         text: todo.trim(),
         states: "yet",
+        deadline: "",
       },
     ]);
     setTodo("");

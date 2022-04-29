@@ -51,6 +51,25 @@ export function App() {
             id: todos[i].id,
             text: e.target.value,
             states: todos[i].states,
+            deadline: todos[i].deadline,
+          })
+        : todosAfterChange.push(todos[i]);
+    }
+    setTodos(todosAfterChange);
+  };
+  const changeTodoDeadline = (e: any) => {
+    const indexToChange: number = todos.findIndex(
+      ({ id }: any) => "deadline-" + id.toString() === e.target.id
+    );
+    let todosAfterChange = [];
+
+    for (let i = 0; i < todos.length; i++) {
+      i === indexToChange
+        ? todosAfterChange.push({
+            id: todos[i].id,
+            text: todos[i].text,
+            states: todos[i].states,
+            deadline: e.target.value,
           })
         : todosAfterChange.push(todos[i]);
     }
@@ -72,6 +91,7 @@ export function App() {
           clickEdit,
           clickDone,
           changeTodoText,
+          changeTodoDeadline,
         }}
       >
         <InputArea />

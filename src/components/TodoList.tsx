@@ -11,6 +11,7 @@ const TodoList = ({ states }: any) => {
     clickEdit,
     clickDone,
     changeTodoText,
+    changeTodoDeadline,
   } = useContext(TodosContext);
   return (
     <ul>
@@ -29,6 +30,14 @@ const TodoList = ({ states }: any) => {
                     value={todo.text}
                     onChange={changeTodoText}
                   />
+                  <input
+                    name="todo-deadline"
+                    id={"deadline-" + todo.id.toString()}
+                    type="date"
+                    placeholder="Input todo's deadline"
+                    value={todo.deadline}
+                    onChange={changeTodoDeadline}
+                  />
                   <button className="edit-btn" onClick={clickDone}>
                     完了
                   </button>
@@ -37,6 +46,7 @@ const TodoList = ({ states }: any) => {
                 <div className="not-editing">
                   <p>ID:{index}</p>
                   <p>{todo.text}</p>
+                  <p>{`締め切り：${todo.deadline || "なし"}`}</p>
                   <button className="edit-btn" onClick={clickEdit}>
                     編集
                   </button>
