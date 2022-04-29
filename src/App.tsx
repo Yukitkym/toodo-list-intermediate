@@ -12,6 +12,7 @@ export const TodosContext: any = React.createContext("");
 export function App() {
   const [todo, setTodo]: Array<any> = useState("");
   const [todos, setTodos]: Array<any> = useState([]);
+  const [editFlag, setEditFlag]: Array<any> = useState(false);
   const clickChange = (e: any) => {
     const id = Number(
       e.target.parentElement.firstElementChild.textContent.substr(3)
@@ -32,10 +33,46 @@ export function App() {
     const removeTodo = todos.filter((todo: any, index: number) => index !== id);
     setTodos(removeTodo);
   };
+  const clickEdit = (e: any) => {
+    setEditFlag(true);
+  };
+  const clickDone = (e: any) => {
+    setEditFlag(false);
+  };
+  const changeTodoText = (e: any) => {
+    const indexToChange: number = todos.findIndex(
+      ({ id }: any) => id.toString() === e.target.id
+    );
+    let todosAfterChange = [];
+
+    for (let i = 0; i < todos.length; i++) {
+      i === indexToChange
+        ? todosAfterChange.push({
+            id: todos[i].id,
+            text: e.target.value,
+            states: todos[i].states,
+          })
+        : todosAfterChange.push(todos[i]);
+    }
+    setTodos(todosAfterChange);
+  };
+
   return (
     <>
       <TodosContext.Provider
-        value={{ todo, setTodo, todos, setTodos, clickChange, clickDelete }}
+        value={{
+          todo,
+          setTodo,
+          todos,
+          setTodos,
+          editFlag,
+          setEditFlag,
+          clickChange,
+          clickDelete,
+          clickEdit,
+          clickDone,
+          changeTodoText,
+        }}
       >
         <InputArea />
         <YetArea />

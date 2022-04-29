@@ -5,11 +5,27 @@ h1 {
 ul {
   margin: 0px;
 }
-
-li p {
+.editing {
+  display: flex;
+}
+.editing p {
   margin-right: 10px;
 }
-li select {
+
+.editing select {
+  height: 40px;
+  margin: auto 0;
+}
+
+.not-editing {
+  display: flex;
+}
+
+.not-editing p {
+  margin-right: 10px;
+}
+
+.not-editing select {
   height: 40px;
   margin: auto 0;
 }
@@ -85,6 +101,11 @@ li select {
   font-size: 25px;
   font-weight: bold;
   margin-top: 0px;
+}
+
+.edit-btn {
+  height: 30px;
+  margin: auto 20px auto 0px;
 }
 
 .change-btn {
