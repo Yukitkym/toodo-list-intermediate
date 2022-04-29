@@ -1,17 +1,17 @@
 import { useContext } from "react";
 
-import { TodosContext } from "../App";
+import { TodosContext } from "../contexts/TodosContext";
 
 const TodoList = ({ states }: any) => {
   const {
     todos,
     editFlag,
-    clickChange,
     clickDelete,
     clickEdit,
     clickDone,
     changeTodoText,
     changeTodoDeadline,
+    changeTodoStates,
   } = useContext(TodosContext);
   return (
     <ul>
@@ -22,59 +22,46 @@ const TodoList = ({ states }: any) => {
               {editFlag ? (
                 <div className="editing">
                   <p>ID:{index}</p>
+                  <select
+                    name="todo-select"
+                    id={`states-${todo.id.toString()}`}
+                    value={todo.states}
+                    onChange={changeTodoStates}
+                  >
+                    <option value="yet">未着手</option>
+                    <option value="doing">進行中</option>
+                    <option value="done">完了</option>
+                  </select>
                   <input
                     name="todo-text"
                     id={todo.id.toString()}
                     type="text"
-                    placeholder="Change todo's text"
+                    placeholder="Input todo's text"
                     value={todo.text}
                     onChange={changeTodoText}
                   />
                   <input
                     name="todo-deadline"
-                    id={"deadline-" + todo.id.toString()}
+                    id={`deadline-${todo.id.toString()}`}
                     type="date"
                     placeholder="Input todo's deadline"
                     value={todo.deadline}
                     onChange={changeTodoDeadline}
                   />
                   <button className="edit-btn" onClick={clickDone}>
-                    完了
+                    編集完了
+                  </button>
+                  <button className="delete-btn" onClick={clickDelete}>
+                    削除
                   </button>
                 </div>
               ) : (
                 <div className="not-editing">
                   <p>ID:{index}</p>
                   <p>{todo.text}</p>
-                  <p>{`締め切り：${todo.deadline || "なし"}`}</p>
+                  <p>{`締め切り:${todo.deadline || "なし"}`}</p>
                   <button className="edit-btn" onClick={clickEdit}>
                     編集
-                  </button>
-                  <select>
-                    {states === "yet" ? (
-                      <option value="yet" selected>
-                        未着手
-                      </option>
-                    ) : (
-                      <option value="yet">未着手</option>
-                    )}
-                    {states === "doing" ? (
-                      <option value="doing" selected>
-                        進行中
-                      </option>
-                    ) : (
-                      <option value="doing">進行中</option>
-                    )}
-                    {states === "done" ? (
-                      <option value="done" selected>
-                        完了
-                      </option>
-                    ) : (
-                      <option value="done">完了</option>
-                    )}
-                  </select>
-                  <button className="change-btn" onClick={clickChange}>
-                    変更
                   </button>
                   <button className="delete-btn" onClick={clickDelete}>
                     削除

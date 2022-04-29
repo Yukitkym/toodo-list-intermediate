@@ -1,6 +1,6 @@
 import { useContext } from "react";
 
-import { TodosContext } from "../App";
+import { TodosContext } from "../contexts/TodosContext";
 
 const InputArea = () => {
   const { todo, setTodo, todos, setTodos } = useContext(TodosContext);
