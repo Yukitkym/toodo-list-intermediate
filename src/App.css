@@ -48,6 +48,29 @@ ul {
   margin: auto 0px;
 }
 
+.sort-area {
+  width: 80%;
+  margin: auto;
+  padding: 0px 20px 20px;
+  background-color: #6fe6a9;
+}
+
+.all-area {
+  min-height: 100px;
+  width: 80%;
+  margin: auto;
+  padding: 20px;
+  background-color: #6fe6a9;
+}
+.all-area ul li {
+  display: flex;
+  background-color: #02cc60;
+  margin: 10px;
+  border: 1px solid #1b8e3b;
+  width: fit-content;
+  padding: 0px 10px;
+}
+
 .yet-area {
   width: 80%;
   margin: auto;

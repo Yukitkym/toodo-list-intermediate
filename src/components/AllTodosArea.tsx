@@ -3,14 +3,14 @@ import { useContext } from "react";
 import { TodosContext } from "../contexts/TodosContext";
 import TodoList from "./TodoList";
 
-const DoingArea = () => {
+const AllTodosArea = () => {
   const { sort } = useContext(TodosContext);
 
-  if (sort === "doing") {
+  if (sort === "all") {
     return (
-      <div className="doing-area">
-        <p className="area-title">進行中タスク</p>
-        <TodoList states="doing" />
+      <div className="all-area">
+        <p className="area-title">タスク</p>
+        <TodoList states="all" />
       </div>
     );
   } else {
@@ -18,4 +18,4 @@ const DoingArea = () => {
   }
 };
 
-export default DoingArea;
+export default AllTodosArea;

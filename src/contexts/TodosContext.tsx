@@ -6,6 +6,7 @@ const TodosContextProvider = (props: any) => {
   const [todo, setTodo]: Array<any> = useState("");
   const [todos, setTodos]: Array<any> = useState([]);
   const [editFlag, setEditFlag]: Array<any> = useState(false);
+  const [sort, setSort]: Array<any> = useState("all");
   const clickDelete = (e: any) => {
     const id = Number(
       e.target.parentElement.firstElementChild.textContent.substr(3)
@@ -73,6 +74,9 @@ const TodosContextProvider = (props: any) => {
     }
     setTodos(todosAfterChange);
   };
+  const changeTodosSort = (e: any) => {
+    setSort(e.target.value);
+  };
   return (
     <TodosContext.Provider
       value={{
@@ -82,12 +86,15 @@ const TodosContextProvider = (props: any) => {
         setTodos,
         editFlag,
         setEditFlag,
+        sort,
+        setSort,
         clickDelete,
         clickEdit,
         clickDone,
         changeTodoText,
         changeTodoDeadline,
         changeTodoStates,
+        changeTodosSort,
       }}
     >
       {props.children}
