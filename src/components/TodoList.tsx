@@ -11,7 +11,6 @@ const TodoList = ({ states }: any) => {
     clickDone,
     changeTodoText,
     changeTodoDeadline,
-    changeTodoStates,
   } = useContext(TodosContext);
   return (
     <ul>
@@ -25,12 +24,28 @@ const TodoList = ({ states }: any) => {
                   <select
                     name="todo-select"
                     id={`states-${todo.id.toString()}`}
-                    value={todo.states}
-                    onChange={changeTodoStates}
                   >
-                    <option value="yet">未着手</option>
-                    <option value="doing">進行中</option>
-                    <option value="done">完了</option>
+                    {todo.states === "yet" ? (
+                      <option value="yet" selected>
+                        未着手
+                      </option>
+                    ) : (
+                      <option value="yet">未着手に変更</option>
+                    )}
+                    {todo.states === "doing" ? (
+                      <option value="doing" selected>
+                        進行中
+                      </option>
+                    ) : (
+                      <option value="doing">進行中に変更</option>
+                    )}
+                    {todo.states === "done" ? (
+                      <option value="done" selected>
+                        完了
+                      </option>
+                    ) : (
+                      <option value="done">完了に変更</option>
+                    )}
                   </select>
                   <input
                     name="todo-text"
@@ -58,6 +73,13 @@ const TodoList = ({ states }: any) => {
               ) : (
                 <div className="not-editing">
                   <p>ID:{index}</p>
+                  <p>
+                    {todo.states === "yet"
+                      ? "未着手"
+                      : todo.states === "doing"
+                      ? "進行中"
+                      : "完了"}
+                  </p>
                   <p>{todo.text}</p>
                   <p>{`締め切り:${todo.deadline || "なし"}`}</p>
                   <button className="edit-btn" onClick={clickEdit}>
@@ -79,12 +101,28 @@ const TodoList = ({ states }: any) => {
                   <select
                     name="todo-select"
                     id={`states-${todo.id.toString()}`}
-                    value={todo.states}
-                    onChange={changeTodoStates}
                   >
-                    <option value="yet">未着手</option>
-                    <option value="doing">進行中</option>
-                    <option value="done">完了</option>
+                    {todo.states === "yet" ? (
+                      <option value="yet" selected>
+                        未着手
+                      </option>
+                    ) : (
+                      <option value="yet">未着手に変更</option>
+                    )}
+                    {todo.states === "doing" ? (
+                      <option value="doing" selected>
+                        進行中
+                      </option>
+                    ) : (
+                      <option value="doing">進行中に変更</option>
+                    )}
+                    {todo.states === "done" ? (
+                      <option value="done" selected>
+                        完了
+                      </option>
+                    ) : (
+                      <option value="done">完了に変更</option>
+                    )}
                   </select>
                   <input
                     name="todo-text"

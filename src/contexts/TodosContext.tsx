@@ -18,6 +18,25 @@ const TodosContextProvider = (props: any) => {
     setEditFlag(true);
   };
   const clickDone = (e: any) => {
+    const targetSelectTag =
+      e.target.previousElementSibling.previousElementSibling
+        .previousElementSibling;
+    const indexToChange: number = todos.findIndex(
+      ({ id }: any) => "states-" + id.toString() === targetSelectTag.id
+    );
+    let todosAfterChange = [];
+
+    for (let i = 0; i < todos.length; i++) {
+      i === indexToChange
+        ? todosAfterChange.push({
+            id: todos[i].id,
+            text: todos[i].text,
+            states: targetSelectTag.value,
+            deadline: todos[i].deadline,
+          })
+        : todosAfterChange.push(todos[i]);
+    }
+    setTodos(todosAfterChange);
     setEditFlag(false);
   };
   const changeTodoText = (e: any) => {
@@ -56,24 +75,6 @@ const TodosContextProvider = (props: any) => {
     }
     setTodos(todosAfterChange);
   };
-  const changeTodoStates = (e: any) => {
-    const indexToChange: number = todos.findIndex(
-      ({ id }: any) => "states-" + id.toString() === e.target.id
-    );
-    let todosAfterChange = [];
-
-    for (let i = 0; i < todos.length; i++) {
-      i === indexToChange
-        ? todosAfterChange.push({
-            id: todos[i].id,
-            text: todos[i].text,
-            states: e.target.value,
-            deadline: todos[i].deadline,
-          })
-        : todosAfterChange.push(todos[i]);
-    }
-    setTodos(todosAfterChange);
-  };
   const changeTodosSort = (e: any) => {
     setSort(e.target.value);
   };
@@ -93,7 +94,6 @@ const TodosContextProvider = (props: any) => {
         clickDone,
         changeTodoText,
         changeTodoDeadline,
-        changeTodoStates,
         changeTodosSort,
       }}
     >
