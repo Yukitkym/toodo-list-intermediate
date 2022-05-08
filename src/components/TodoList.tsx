@@ -12,6 +12,26 @@ const TodoList = ({ states }: any) => {
     changeTodoText,
     changeTodoDeadline,
   } = useContext(TodosContext);
+
+  const todoStates = (states: any) => {
+    switch (states) {
+      case "yet":
+        return "未着手";
+      case "doing":
+        return "進行中";
+      case "done":
+        return "完了";
+      default:
+        return "未着手";
+    }
+  };
+
+  const taskStatesArr: any = [
+    { title: "未着手", states: "yet" },
+    { title: "進行中", states: "doing" },
+    { title: "完了", states: "done" },
+  ];
+
   return (
     <ul>
       {todos.map((todo: any, index: number) => {
@@ -25,27 +45,21 @@ const TodoList = ({ states }: any) => {
                     name="todo-select"
                     id={`states-${todo.id.toString()}`}
                   >
-                    {todo.states === "yet" ? (
-                      <option value="yet" selected>
-                        未着手
-                      </option>
-                    ) : (
-                      <option value="yet">未着手に変更</option>
-                    )}
-                    {todo.states === "doing" ? (
-                      <option value="doing" selected>
-                        進行中
-                      </option>
-                    ) : (
-                      <option value="doing">進行中に変更</option>
-                    )}
-                    {todo.states === "done" ? (
-                      <option value="done" selected>
-                        完了
-                      </option>
-                    ) : (
-                      <option value="done">完了に変更</option>
-                    )}
+                    {taskStatesArr.map((taskStates: any) => {
+                      if (todo.states === taskStates.states) {
+                        return (
+                          <option value={taskStates.states} selected>
+                            {taskStates.title}
+                          </option>
+                        );
+                      } else {
+                        return (
+                          <option
+                            value={taskStates.states}
+                          >{`${taskStates.title}に変更`}</option>
+                        );
+                      }
+                    })}
                   </select>
                   <input
                     name="todo-text"
@@ -73,13 +87,7 @@ const TodoList = ({ states }: any) => {
               ) : (
                 <div className="not-editing">
                   <p>ID:{index}</p>
-                  <p>
-                    {todo.states === "yet"
-                      ? "未着手"
-                      : todo.states === "doing"
-                      ? "進行中"
-                      : "完了"}
-                  </p>
+                  <p>{todoStates(todo.states)}</p>
                   <p>{todo.text}</p>
                   <p>{`締め切り:${todo.deadline || "なし"}`}</p>
                   <button className="edit-btn" onClick={clickEdit}>
@@ -102,27 +110,21 @@ const TodoList = ({ states }: any) => {
                     name="todo-select"
                     id={`states-${todo.id.toString()}`}
                   >
-                    {todo.states === "yet" ? (
-                      <option value="yet" selected>
-                        未着手
-                      </option>
-                    ) : (
-                      <option value="yet">未着手に変更</option>
-                    )}
-                    {todo.states === "doing" ? (
-                      <option value="doing" selected>
-                        進行中
-                      </option>
-                    ) : (
-                      <option value="doing">進行中に変更</option>
-                    )}
-                    {todo.states === "done" ? (
-                      <option value="done" selected>
-                        完了
-                      </option>
-                    ) : (
-                      <option value="done">完了に変更</option>
-                    )}
+                    {taskStatesArr.map((taskStates: any) => {
+                      if (todo.states === taskStates.states) {
+                        return (
+                          <option value={taskStates.states} selected>
+                            {taskStates.title}
+                          </option>
+                        );
+                      } else {
+                        return (
+                          <option
+                            value={taskStates.states}
+                          >{`${taskStates.title}に変更`}</option>
+                        );
+                      }
+                    })}
                   </select>
                   <input
                     name="todo-text"
@@ -150,13 +152,7 @@ const TodoList = ({ states }: any) => {
               ) : (
                 <div className="not-editing">
                   <p>ID:{index}</p>
-                  <p>
-                    {todo.states === "yet"
-                      ? "未着手"
-                      : todo.states === "doing"
-                      ? "進行中"
-                      : "完了"}
-                  </p>
+                  <p>{todoStates(todo.states)}</p>
                   <p>{todo.text}</p>
                   <p>{`締め切り:${todo.deadline || "なし"}`}</p>
                   <button className="edit-btn" onClick={clickEdit}>
